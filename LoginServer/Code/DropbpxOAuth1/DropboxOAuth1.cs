@@ -5,14 +5,26 @@ using System.Web;
 
 namespace LoginServer.Code.OAuth1
 {
-	/*
 	public class DropboxOAuth1 : OAuth1Authenticator
 	{
+		#region RequestToken
 		private const string _requestTokenUrl = @"https://api.dropbox.com/1/oauth/request_token";
 		public override string RequestTokenUrl
 		{
 			get { return _requestTokenUrl; }
 		}
+
+		BaseRequestTokenResult _requestTokenResult;
+		public override string RequestToken
+		{
+			get { return _requestTokenResult.oauth_token; }
+		}
+
+		public override string RequestTokenSecret
+		{
+			get { return _requestTokenResult.oauth_token_secret; }
+		}
+		#endregion
 
 		public override string AccessTokenUrl
 		{
@@ -24,23 +36,17 @@ namespace LoginServer.Code.OAuth1
 			get { throw new NotImplementedException(); }
 		}
 
-		public override string RequestToken
+		public DropboxOAuth1(string consumerKey, string consumerSecret, string callbackUrl)
+			:base(consumerKey, consumerSecret, callbackUrl)
 		{
-			get { throw new NotImplementedException(); }
-		}
-
-		public override string RequestTokenSecret
-		{
-			get { throw new NotImplementedException(); }
 		}
 
 		public new BaseRequestTokenResult GetRequestToken()
 		{
 			string response = base.GetRequestToken();
 
-			BaseRequestTokenResult result = new BaseRequestTokenResult(response);
-			return result;
+			_requestTokenResult = new BaseRequestTokenResult(response);
+			return _requestTokenResult;
 		}
 	}
-	*/
 }
