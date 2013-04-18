@@ -77,7 +77,7 @@ namespace LoginServer.Code
 		/// Метод обмена маркера на маркер доступа. Т.е. получение маркера с помощью которого можно будет производить запросы к API ServiceProvider'а от имени пользователя.
 		/// <summary>
 		/// <returns></returns>
-		public AccessTokenResult ExchangeRequestTokenToAccessToken()
+		public TwitterAccessTokenResult ExchangeRequestTokenToAccessToken()
 		{
 			string requestMethod = "POST";
 
@@ -112,9 +112,7 @@ namespace LoginServer.Code
 
 			string result = ReadResponseFrom(httpRequest);
 
-			AccessTokenResult accessTokenResult = new AccessTokenResult();
-			accessTokenResult.Parse(result);
-
+			TwitterAccessTokenResult accessTokenResult = new TwitterAccessTokenResult(result);
 			return accessTokenResult;
 		}
 

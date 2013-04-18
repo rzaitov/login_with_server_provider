@@ -16,7 +16,7 @@ namespace TechnosilaMock.Controllers
     public class LoginController : Controller
     {
 		private static BaseRequestTokenResult requestTokenResult;
-		private static AccessTokenResult accessTokenResult;
+		private static TwitterAccessTokenResult accessTokenResult;
 
 		private static TwitterAuthenticator twOAuth;
         //
@@ -117,14 +117,14 @@ expires_in: {2}", userId, access_token, expires_in);
 				//"L8qq9PZyRg6ieKGEKhZolGC0vJWLw8iEJ88DRdyOg",
 
 				// real callback
-				"http://mysite.ru:888/Login/TwitterCallback/"
+				"http://mysite.ru:1083/Login/TwitterCallback/"
 				// face callback
 				//"http://localhost/sign-in-with-twitter/"
 				);
 
 			requestTokenResult = twOAuth.GetRequestToken();
 
-			return new RedirectResult(string.Format("?oauth_token={0}", requestTokenResult.oauth_token));
+			return new RedirectResult(twOAuth.UserAuthorizationUrl);
 		}
 
 		public string TwitterCallback(string oauth_token, string oauth_verifier)
