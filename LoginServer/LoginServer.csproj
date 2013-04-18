@@ -104,10 +104,12 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Code\DropbpxOAuth1\DropboxOAuth1.cs" />
     <Compile Include="Code\FileLog.cs" />
+    <Compile Include="Code\Share\OAuth1.cs" />
     <Compile Include="Code\TwitterOAuth1\AccessTokenResult.cs" />
-    <Compile Include="Code\TwitterOAuth1\AuthorizationHeaderInfo.cs" />
-    <Compile Include="Code\TwitterOAuth1\OAuthParameterForSignature.cs" />
+    <Compile Include="Code\Share\AuthorizationHeaderInfo.cs" />
+    <Compile Include="Code\Share\OAuthParameterForSignature.cs" />
     <Compile Include="Code\TwitterOAuth1\RequestTokenResult.cs" />
     <Compile Include="Code\TwitterOAuth1\TwitterOAuth1.cs" />
     <Compile Include="Controllers\LoginController.cs" />

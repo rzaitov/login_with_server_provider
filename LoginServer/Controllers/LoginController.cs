@@ -8,17 +8,17 @@ using System.Net;
 using System.IO;
 using TechnosilaMock.Code;
 
-using TechnosilaMock.Code.OAuth1;
+using LoginServer.Code;
 using Newtonsoft.Json;
 
 namespace TechnosilaMock.Controllers
 {
     public class LoginController : Controller
     {
-		private static RequestTokenResult requestTokenResult;
+		private static BaseRequestTokenResult requestTokenResult;
 		private static AccessTokenResult accessTokenResult;
 
-		private static TwitterOAuth1 twOAuth;
+		private static TwitterAuthenticator twOAuth;
         //
         // GET: /Login/
 
@@ -105,7 +105,7 @@ expires_in: {2}", userId, access_token, expires_in);
 
 		public ActionResult GetRequestToken()
 		{
-			twOAuth = new TwitterOAuth1(
+			twOAuth = new TwitterAuthenticator(
 				// real consumer key
 				"VPV4S0Yly38DQGCnjzAJQ",
 				// fake consumer key
@@ -124,12 +124,13 @@ expires_in: {2}", userId, access_token, expires_in);
 
 			requestTokenResult = twOAuth.GetRequestToken();
 
-			return new RedirectResult(string.Format("https://api.twitter.com/oauth/authenticate?oauth_token={0}", requestTokenResult.oauth_token));
+			return new RedirectResult(string.Format("?oauth_token={0}", requestTokenResult.oauth_token));
 		}
 
 		public string TwitterCallback(string oauth_token, string oauth_verifier)
 		{
-			accessTokenResult = twOAuth.ExchangeRequestTokenToAccessToken(oauth_token, requestTokenResult.oauth_token_secret, oauth_verifier);
+			twOAuth.SetOauthVerifier(oauth_verifier);
+			accessTokenResult = twOAuth.ExchangeRequestTokenToAccessToken();
 
 			return accessTokenResult.oauth_token;
 		}

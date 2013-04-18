@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 
-namespace TechnosilaMock.Code.OAuth1
+namespace LoginServer.Code
 {
 	public class AccessTokenResult
 	{

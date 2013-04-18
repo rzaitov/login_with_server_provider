@@ -5,9 +5,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LoginServer", "LoginServer\
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{7690B498-332F-4182-8A9C-024135897A4B}"
 	ProjectSection(SolutionItems) = preProject
-		Local.testsettings = Local.testsettings
 		LoginServer.vsmdi = LoginServer.vsmdi
-		TraceAndTestImpact.testsettings = TraceAndTestImpact.testsettings
 	EndProjectSection
 EndProject
 Global
